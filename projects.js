@@ -1,0 +1,245 @@
+// All project content lives here. The home page carousel and project.html
+// both read from this list, so edit a project once and it updates everywhere.
+//
+// Fields:
+//   slug      used in the link: project.html?p=<slug>
+//   category  must match one of CATEGORIES below
+//   cover     image in assets/ (optional; a soft gradient shows if missing)
+//   github    link to the repo. Replace "https://github.com/khus-hi" with the
+//             exact repo URL, e.g. "https://github.com/khus-hi/health-etl"
+//   live      optional extra button (dashboard, demo, etc.)
+
+window.CATEGORIES = [
+  { id: "data-engineering", label: "Data Engineering" },
+  { id: "machine-learning", label: "Machine Learning" },
+  { id: "analytics", label: "Analytics & Dashboards" },
+  { id: "ai-llms", label: "AI & LLMs" },
+];
+
+window.PROJECTS = [
+  {
+    slug: "ai-documentary-pipeline",
+    category: "ai-llms",
+    title: "AI Documentary Pipeline",
+    short: "An 11-stage Kubeflow pipeline on OpenShift AI that turns raw interviews into narrated mini-documentaries.",
+    cover: "assets/projects/documentary.jpg",
+    art: "a3",
+    meta: "Red Hat · presented at DevConf.US",
+    date: "Summer 2026",
+    context:
+      "Turning hours of interview footage into a short documentary is slow, manual work. At Red Hat I built a pipeline that does most of it automatically, and presented it at DevConf.US.",
+    did: [
+      "Architected an 11-stage Kubeflow pipeline on OpenShift AI",
+      "Chained speech recognition, LLMs and text-to-speech to automate narration",
+      "Productionized modular components with automated error handling for unattended runs",
+    ],
+    results: ["85% less production time", "10+ hours saved per interview"],
+    stack: ["Kubeflow", "OpenShift AI", "Speech recognition", "LLMs", "TTS", "Python"],
+    github: "",
+    slides: "assets/docs/devconf-presentation.pdf",
+  },
+  {
+    slug: "gateway-cities-dashboard",
+    category: "analytics",
+    title: "Massachusetts Gateway Cities Dashboard",
+    short: "Interactive dashboard and Gemini RAG assistant on immigrant population trends across 26 Gateway Cities, built for GBH News.",
+    cover: "assets/projects/gateway.jpg",
+    art: "a2",
+    meta: "Client project · GBH News · MassMutual Data Days for Good × BU Spark!",
+    date: "Mar 2026",
+    context:
+      "During MassMutual's Data Days for Good, our team built a tool for GBH News to explore how foreign-born populations have changed across Massachusetts' 26 Gateway Cities, using American Community Survey 5-year estimates from 2010 to 2024.",
+    did: [
+      "Built Python ETL that unified 10+ ACS datasets into 20+ socioeconomic indicators",
+      "Cleaned and processed ACS datasets with consistent geographic identifiers",
+      "Built visualizations for demographic trends and country-of-origin breakdowns",
+      "Helped develop dashboard components with filtering, comparisons and trend views",
+      "Used per-capita and rate-based metrics so cities of different sizes compare fairly",
+      "Developed a Gemini-powered RAG assistant so reporters can ask questions of 12+ years of census data",
+    ],
+    results: [
+      "Journalists can explore income, housing, education and employment indicators city by city",
+      "Census lookups went from hours to seconds with the RAG assistant",
+      "Presented to MassMutual, BU Spark! and GBH",
+    ],
+    stack: ["Python", "pandas", "React", "Recharts", "Leaflet", "Flask", "Gemini API", "RAG"],
+    github: "https://github.com/BU-Spark/dd4g-gbh-gateway-cites",
+    live: { label: "Open the dashboard", url: "https://lnkd.in/exSdm5e7" },
+  },
+  {
+    slug: "aki-risk-prediction",
+    category: "machine-learning",
+    title: "Drug-Associated Kidney Injury Risk in the ICU",
+    short: "Predicting acute kidney injury within 48 hours of nephrotoxic drugs from a 65K+ ICU-stay cohort.",
+    cover: "assets/projects/aki.jpg",
+    art: "a1",
+    meta: "Healthcare ML · MIMIC-IV",
+    date: "2025",
+    context:
+      "Some common ICU drugs can damage the kidneys. Catching acute kidney injury (AKI) early gives clinicians time to act, so the question was: can we flag at-risk patients within 48 hours of exposure?",
+    did: [
+      "Built a 65K+ ICU-stay cohort from MIMIC-IV in BigQuery SQL",
+      "Linked nephrotoxic drug exposure to AKI onset within 48 hours",
+      "Trained a CatBoost model and explained its predictions with SHAP",
+    ],
+    results: ["Recall nearly doubled: 0.37 → 0.77", "ROC-AUC improved: 0.82 → 0.85"],
+    stack: ["BigQuery SQL", "Python", "CatBoost", "SHAP"],
+    github: "https://github.com/khus-hi/Drug-Associated-Acute-Kidney-Injury-in-the-ICU",
+    slides: "assets/docs/aki-presentation.pdf",
+  },
+  {
+    slug: "medai-ati-prediction",
+    category: "machine-learning",
+    title: "Acute Tubular Injury Prediction (MedAI Hackathon)",
+    short: "Winning hackathon model that predicts kidney injury risk before biopsy from 6,500+ protein biomarkers.",
+    cover: "assets/projects/medai.jpg",
+    art: "a2",
+    meta: "MedAI Hackathon · BU Hariri Institute",
+    date: "Feb 2026",
+    context:
+      "Biopsies are invasive. Our team set out to estimate a patient's risk of acute tubular injury beforehand, using proteomics and clinical data.",
+    did: [
+      "Worked with 6,500+ protein biomarkers alongside clinical features",
+      "Built and evaluated models to predict injury risk before biopsy",
+    ],
+    results: ["First runner-up in Challenge 2 at the BU MedAI Hackathon"],
+    stack: ["Python", "scikit-learn", "Feature selection"],
+    github: "",
+  },
+  {
+    slug: "slot-machine-revenue-explorer",
+    category: "data-engineering",
+    title: "US Military Base Slot Machine Revenue Explorer",
+    short: "Turned unstructured Army PDFs covering 79 overseas bases into a clean SQLite database and revenue analysis.",
+    cover: "assets/projects/slot-machine.jpg",
+    art: "a4",
+    meta: "Client project · MuckRock Foundation · BU Spark! DS701",
+    date: "Fall 2025",
+    context:
+      "The Army Recreation Machine Program (ARMP) runs slot machines on 79 U.S. military bases overseas. MuckRock, a nonprofit newsroom, had the records, but only as tables buried inside unstructured government PDFs. Our team was asked to turn them into something reporters could actually query.",
+    did: [
+      "Extracted tabular data from complex, inconsistent PDF reports (FY2020–2024)",
+      "Cleaned, normalized and validated the data across reporting years",
+      "Structured the cleaned data into a SQLite database and explored it with Datasette",
+      "Built a reproducible, documented Python pipeline so the work can be rerun",
+      "Analyzed revenue by branch, region, base and machine type, plus year-over-year trends",
+    ],
+    results: [
+      "Delivered in a client-style setup with iterative check-ins with MuckRock",
+      "Presented the findings as a poster at BU Spark! Demo Day",
+    ],
+    stack: ["Python", "tabula", "camelot", "pandas", "SQLite", "Datasette", "SQL"],
+    github: "",
+    figure: { src: "assets/projects/slot-map.png", title: "Where the machines are", caption: "Slot machine locations across ARMP bases in South Korea and Japan, clustered by count." },
+  },
+  {
+    slug: "health-events-etl",
+    category: "data-engineering",
+    title: "Health Events ETL Pipeline",
+    short: "Idempotent pipeline that lands 1M health events in PostgreSQL with row-level quality checks, then serves them through an API.",
+    cover: "assets/projects/health-etl.jpg",
+    art: "a3",
+    meta: "Personal project",
+    date: "2026",
+    context:
+      "Health event data arrives messy and in batches. The goal was a pipeline that can be rerun safely, catches bad rows before they reach analysts, and serves curated data to applications.",
+    did: [
+      "Built an idempotent Python/SQLAlchemy ETL with batched upserts into PostgreSQL",
+      "Added null, type, enum and duplicate checks with structured JSON logging",
+      "Wrote a deterministic SQL priority score for each event",
+      "Migrated curated data to a MySQL serving store with parity checks",
+      "Served the data through a Flask API deployed on OpenShift",
+    ],
+    results: ["1M events landed with every row validated", "Safe to rerun end to end without duplicates"],
+    stack: ["Python", "SQLAlchemy", "PostgreSQL", "MySQL", "Flask", "OpenShift"],
+    github: "",
+  },
+  {
+    slug: "foodshed-boston",
+    category: "analytics",
+    title: "Mapping for Good: FoodShed Boston",
+    short: "Award-winning neighborhood-level food access map joining Boston Open Data, ACS and social vulnerability data.",
+    cover: "assets/videos/food-equity-demo.jpg",
+    art: "a4",
+    meta: "CivicHacks · Original Research Award",
+    date: "Apr 2026",
+    context:
+      "Food access in Boston varies block by block. Our CivicHacks team mapped the city's food ecosystem to show which neighborhoods are underserved and why.",
+    did: [
+      "Joined Boston Open Data, ACS and social vulnerability data at the neighborhood level",
+      "Built a mapping platform to explore food access gaps",
+    ],
+    results: ["Won the Original Research Award at CivicHacks"],
+    stack: ["Python", "GeoPandas", "Mapping", "ACS"],
+    github: "https://github.com/khus-hi/Mapping-for-Good-The-Boston-Food-Ecosystem",
+    coverVideo: "assets/videos/food-equity-loop.mp4",
+    video: { src: "assets/videos/food-equity-demo.mp4", poster: "assets/videos/food-equity-demo.jpg" },
+  },
+  {
+    slug: "nyc-subway-forecasting",
+    category: "analytics",
+    title: "NYC Subway Demand Forecasting",
+    short: "Hourly ridership forecasts for two of NYC's busiest stations, turned into staffing decisions.",
+    cover: "assets/projects/subway.jpg",
+    art: "a5",
+    meta: "Forecasting · MTA open data",
+    date: "2025",
+    context:
+      "Times Sq–42 St and Grand Central–42 St see huge swings in hourly ridership. Better forecasts mean better staffing, so I compared forecasting approaches and translated them into staffing plans.",
+    did: [
+      "Built an hourly time-series pipeline on NYC MTA open ridership data",
+      "Compared naive, seasonal-naive and gradient boosting models",
+      "Built an interactive Power BI dashboard for staffing decisions",
+    ],
+    results: [
+      "~40% lower MAE than the naive baseline at both stations",
+      "Estimated $30K–$70K weekly staffing cost reduction",
+      "Peak demand identified at 8–10 AM and 4–7 PM",
+    ],
+    stack: ["Python", "Time series", "Gradient boosting", "Power BI"],
+    github: "https://github.com/khus-hi/NYC-Subway-Demand-Forecasting-Resource-Optimization",
+    slides: "assets/docs/subway-dashboard.pdf",
+    slidesLabel: "View dashboard",
+  },
+  {
+    slug: "ecommerce-customer-analytics",
+    category: "analytics",
+    title: "E-commerce Revenue & Churn Analytics",
+    short: "RFM segmentation, lifetime value and churn prediction to find high-value and at-risk customers.",
+    cover: "assets/projects/ecommerce.jpg",
+    art: "a1",
+    meta: "Customer analytics",
+    date: "2025",
+    context:
+      "Most online stores earn a large share of revenue from a small group of customers. This project finds those customers, and the ones about to leave.",
+    did: [
+      "Analyzed the UCI Online Retail transaction dataset with Python and SQL",
+      "Segmented customers with RFM analysis and modeled customer lifetime value",
+      "Built a churn prediction model with scikit-learn",
+    ],
+    results: ["Surfaced revenue concentration and at-risk segments for targeted retention"],
+    stack: ["Python", "SQL", "scikit-learn", "pandas"],
+    github: "https://github.com/khus-hi/E-commerce-Customer-Analytics",
+  },
+  {
+    slug: "moodsense",
+    category: "machine-learning",
+    title: "MoodSense: Multimodal Emotion Recognition",
+    short: "Comparing audio, video and fused emotion models on RAVDESS, with error and confidence analysis.",
+    cover: "assets/projects/moodsense.jpg",
+    art: "a6",
+    meta: "Multimodal ML",
+    date: "2025",
+    context:
+      "Emotion recognition models can use voice, face or both. MoodSense evaluates which signals actually help, and where each model gets confused.",
+    did: [
+      "Evaluated audio, video and fused audio-visual model predictions on the RAVDESS dataset",
+      "Analyzed per-emotion misclassifications and how confidence relates to correctness",
+      "Built an interactive Power BI dashboard to compare modalities",
+    ],
+    results: ["Clear side-by-side view of where each modality wins or fails"],
+    stack: ["Python", "Power BI", "RAVDESS"],
+    github: "https://github.com/khus-hi/multimodal-emotion-analytics",
+    live: { label: "Open the Power BI report", url: "https://app.powerbi.com/view?r=eyJrIjoiNmVjM2RiMjEtMGM1Ni00ZGQwLThmOGYtNmUzZGRlMWFhMzlhIiwidCI6ImQ1N2QzMmNjLWMxMjEtNDg4Zi1iMDdiLWRmZTcwNTY4MGM3MSIsImMiOjN9" },
+  },
+];
