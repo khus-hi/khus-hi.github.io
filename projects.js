@@ -91,14 +91,22 @@ window.PROJECTS = [
       "Estimated penalty dollars per hospital and condition from cost report base payments",
       "Modeled what explains readmission ratios with robust OLS and a gradient-boosted tree",
       "Built a formula-driven Excel model with scenarios and the ROI of a care-transitions program",
+      "Published five Tableau Public dashboards, including a lookup for any hospital",
     ],
     results: [
       "About $316M in estimated FY2026 penalties across 2,302 penalized hospitals",
       "HCA pays 0.57% of base Medicare payments in penalties, vs 0.37% for hospitals outside the four chains",
       "Hospital and community factors explain only about 7% of the variation in readmission ratios",
     ],
-    stack: ["Python", "SQL", "DuckDB", "statsmodels", "scikit-learn", "Excel"],
+    stack: ["Python", "SQL", "DuckDB", "statsmodels", "scikit-learn", "Excel", "Tableau"],
     github: "https://github.com/khus-hi/hrrp-penalties",
+    dashboards: [
+      { title: "National", url: "https://public.tableau.com/views/1_National/1_National", w: 1200, h: 827, ph: 727 },
+      { title: "Hospital lookup", url: "https://public.tableau.com/views/2_HospitalLookup/2_HospitalLookup", w: 1200, h: 827, ph: 827 },
+      { title: "Conditions", url: "https://public.tableau.com/views/3_Conditions/3_Conditions", w: 1200, h: 827, ph: 727 },
+      { title: "Massachusetts", url: "https://public.tableau.com/views/4_Massachusetts/4_Massachusetts", w: 1200, h: 827, ph: 1177 },
+      { title: "Parent systems", url: "https://public.tableau.com/views/5_ParentSystems/5_ParentSystems", w: 1200, h: 827, ph: 727 },
+    ],
   },
   {
     slug: "gateway-cities-dashboard",
