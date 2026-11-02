@@ -39,6 +39,32 @@ window.PROJECTS = [
     slides: "assets/docs/devconf-presentation.pdf",
   },
   {
+    slug: "us-metro-economic-pulse",
+    category: "analytics",
+    title: "US Metro Economic Pulse",
+    short: "A monthly scorecard of the 50 largest US metros, built on an automated pipeline over public BLS, BEA and Census data.",
+    cover: "assets/projects/metro.jpg",
+    art: "a3",
+    meta: "Analytics engineering · Public economic data",
+    date: "2026",
+    context:
+      "Economic development offices and job seekers both ask the same question: which metros are actually gaining momentum? The data exists, but it is spread across BLS, BEA, Census and FRED, on different geographies and release schedules. BEA also stopped publishing metro GDP in 2026, so I built county-to-metro rollups myself.",
+    did: [
+      "Wrote Python ingestion for BLS (LAUS, CES, JOLTS, CPI, OEWS), BEA, Census ACS and FRED, plus job postings from public Greenhouse and Lever boards",
+      "Modeled the data in dbt on DuckDB (staging, intermediate and mart layers) with tests on every mart",
+      "Scored each metro on job growth, unemployment change, real wage growth and openings, relative to the other 49",
+      "Built a ridge-regression unemployment nowcast and backtested it over 2,350 one-month-ahead forecasts",
+      "Orchestrated the monthly run as a Kubeflow pipeline, with a GitHub Actions version on free runners",
+    ],
+    results: [
+      "Ranks all 50 metros monthly; Boston is #38 as of September 2026",
+      "Cost-adjusted Data Scientist pay by metro from OEWS and BEA price parities",
+      "SQL (63%) and Python (45%) are the most requested tools across 374 analyst postings",
+    ],
+    stack: ["Python", "SQL", "dbt", "DuckDB", "Kubeflow", "GitHub Actions", "scikit-learn"],
+    github: "https://github.com/khus-hi/us-metro-economic-pulse",
+  },
+  {
     slug: "gateway-cities-dashboard",
     category: "analytics",
     title: "Massachusetts Gateway Cities Dashboard",
