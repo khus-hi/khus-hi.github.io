@@ -332,6 +332,7 @@ figure { margin: 0; }
 }
 .d-video { grid-column: 1 / -1; }
 .d-video video { display: block; width: 100%; border-radius: 14px; border: 1px solid var(--line); background: #000; }
+#dashboards { scroll-margin-top: 90px; }
 .dash-frame { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background: #fff; }
 .dash-frame iframe { display: block; border: 0; }
 .dash-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }

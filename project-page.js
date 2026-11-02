@@ -47,6 +47,7 @@ if (i === -1) {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/></svg>
             ${p.slidesLabel || "View presentation"}
           </a>` : ""}
+          ${p.dashboards ? `<a class="btn" href="#dashboards"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Dashboards</a>` : ""}
           ${p.live ? `<a class="btn${p.github || p.slides ? "" : " primary"}" href="${p.live.url}" target="_blank" rel="noopener">${p.live.label} ↗</a>` : ""}
         </div>
       </div>
@@ -62,8 +63,8 @@ if (i === -1) {
         <h2>The context</h2>
         <p>${p.context}</p>
       </div>
-      ${p.dashboards ? `<div class="d-block d-video d-dash">
-        <h2>Interactive dashboards</h2>
+      ${p.dashboards ? `<div class="d-block d-video d-dash" id="dashboards">
+        <h2>Dashboards</h2>
         ${p.dashboards.length > 1 ? `<div class="dash-tabs" role="tablist">${p.dashboards.map((d, k) => `<button class="dash-tab" role="tab" data-k="${k}" aria-selected="${k === 0}">${d.title}</button>`).join("")}</div>` : ""}
         <div class="dash-frame"><iframe title="${p.dashboards[0].title}" loading="lazy" allowfullscreen></iframe></div>
         <p class="d-cap"><a class="dash-open" href="${p.dashboards[0].url}" target="_blank" rel="noopener">Open full screen on Tableau Public ↗</a></p>
@@ -104,24 +105,24 @@ if (i === -1) {
   if (p.dashboards) setupDashboards(p.dashboards);
 }
 
-// Tableau Public dashboards are a fixed 1366x795, so on desktop the frame is
-// scaled down to fit the column; phones get Tableau's own phone layout.
+// Tableau Public dashboards have a fixed size (w x h), so on desktop the frame
+// is scaled down to fit the column; phones get Tableau's own phone layout (ph).
 function setupDashboards(list) {
   const box = main.querySelector(".dash-frame");
   const frame = box.querySelector("iframe");
   const open = main.querySelector(".dash-open");
-  const W = 1366, H = 795;
   let current = 0;
   const phone = () => box.clientWidth < 600;
   const src = (d) => `${d.url}?:embed=y&:showVizHome=no&:toolbar=yes&:device=${phone() ? "phone" : "desktop"}`;
   const fit = () => {
     if (phone()) {
-      frame.style.cssText = "width:100%;height:1727px;transform:none";
+      frame.style.cssText = `width:100%;height:${list[current].ph}px;transform:none`;
       box.style.height = "auto";
     } else {
-      const k = box.clientWidth / W;
-      frame.style.cssText = `width:${W}px;height:${H}px;transform:scale(${k});transform-origin:0 0`;
-      box.style.height = `${H * k}px`;
+      const { w, h } = list[current];
+      const k = Math.min(1, box.clientWidth / w);
+      frame.style.cssText = `width:${w}px;height:${h}px;transform:scale(${k});transform-origin:0 0`;
+      box.style.height = `${h * k}px`;
     }
   };
   const show = (k) => {

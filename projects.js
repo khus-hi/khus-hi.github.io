@@ -8,7 +8,8 @@
 //   github    link to the repo. Replace "https://github.com/khus-hi" with the
 //             exact repo URL, e.g. "https://github.com/khus-hi/health-etl"
 //   live      optional extra button (dashboard, demo, etc.)
-//   dashboards  Tableau Public views embedded on the page: [{ title, url }]
+//   dashboards  Tableau Public views embedded on the page:
+//             [{ title, url, w, h (desktop size), ph (phone height) }]
 //   hidden    true keeps the project page but leaves it out of the Projects
 //             carousel (used for work linked from Talks & Wins)
 
@@ -67,7 +68,10 @@ window.PROJECTS = [
     stack: ["Python", "SQL", "dbt", "DuckDB", "Kubeflow", "GitHub Actions", "scikit-learn"],
     github: "https://github.com/khus-hi/us-metro-economic-pulse",
     dashboards: [
-      { title: "Metro ranking", url: "https://public.tableau.com/views/USMetroEconomicPulseMetroRanking/1Metroranking" },
+      { title: "Metro ranking", url: "https://public.tableau.com/views/USMetroEconomicPulseMetroRanking/1Metroranking", w: 1366, h: 795, ph: 1727 },
+      { title: "Metro deep dive", url: "https://public.tableau.com/views/USMetroEconomicPulseDeepdive/2Metrodeepdive", w: 1200, h: 827, ph: 1677 },
+      { title: "Analyst pay and demand", url: "https://public.tableau.com/views/USMetroEconomicPulseAnalystPayandDemand/Analystpayanddemand", w: 1200, h: 827, ph: 1527 },
+      { title: "Nowcast vs actual", url: "https://public.tableau.com/shared/8Z57ZJ7KJ", w: 1200, h: 827, ph: 1627 },
     ],
   },
   {
