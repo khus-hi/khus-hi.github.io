@@ -197,6 +197,8 @@ figure { margin: 0; }
 .stage-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
 .stage-grid .spot { flex: 0 1 calc((100% - 56px) / 3); }
 .spot h3 a:hover { color: var(--accent); }
+.spot-link { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 0.92rem; color: var(--accent); }
+.spot-link:hover { text-decoration: underline; }
 .spot { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; }
 .spot .cover { aspect-ratio: 16 / 10; }
 .spot .cover img { cursor: zoom-in; }
@@ -204,7 +206,7 @@ figure { margin: 0; }
 .spot-body { padding: 24px 28px 28px; }
 .tag { font-size: 0.82rem; font-weight: 600; color: var(--accent); margin: 0 0 8px; }
 .spot h3 { font: 700 1.4rem/1.2 var(--serif); letter-spacing: -0.02em; }
-.spot-body p:last-child { color: var(--muted); }
+.spot-body > p:not(.tag) { color: var(--muted); }
 
 /* Lightbox */
 .lightbox { position: fixed; inset: 0; z-index: 300; background: rgba(8, 7, 6, 0.92); display: grid; place-items: center; align-content: center; gap: 12px; padding: 24px; }

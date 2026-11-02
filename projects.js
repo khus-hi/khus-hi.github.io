@@ -8,14 +8,14 @@
 //   github    link to the repo. Replace "https://github.com/khus-hi" with the
 //             exact repo URL, e.g. "https://github.com/khus-hi/health-etl"
 //   live      optional extra button (dashboard, demo, etc.)
+//   hidden    true keeps the project page but leaves it out of the Projects
+//             carousel (used for work linked from Talks & Wins)
 
 window.CATEGORIES = [
   { id: "data-engineering", label: "Data Engineering" },
   { id: "machine-learning", label: "Machine Learning" },
   { id: "analytics", label: "Analytics & Dashboards" },
   { id: "ai-llms", label: "AI & LLMs" },
-  { id: "client", label: "Client Projects" },
-  { id: "hackathons", label: "Hackathons" },
 ];
 
 window.PROJECTS = [
@@ -68,7 +68,8 @@ window.PROJECTS = [
   },
   {
     slug: "gateway-cities-dashboard",
-    category: "client",
+    category: "analytics",
+    hidden: true,
     title: "Massachusetts Gateway Cities Dashboard",
     short: "Interactive dashboard and Gemini RAG assistant on immigrant population trends across 26 Gateway Cities, built for GBH News.",
     cover: "assets/projects/gateway.jpg",
@@ -184,7 +185,8 @@ window.PROJECTS = [
   },
   {
     slug: "foodshed-boston",
-    category: "hackathons",
+    category: "analytics",
+    hidden: true,
     title: "Mapping for Good: FoodShed Boston",
     short: "Award-winning neighborhood-level food access map joining Boston Open Data, ACS and social vulnerability data.",
     cover: "assets/videos/food-equity-demo.jpg",

@@ -89,9 +89,11 @@ function projectCard(p) {
   return a;
 }
 
+const SHOWN = (window.PROJECTS || []).filter((p) => !p.hidden);
+
 function showCategory(id) {
   projTabs.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.cat === id)));
-  const list = id === "all" ? PROJECTS : PROJECTS.filter((p) => p.category === id);
+  const list = id === "all" ? SHOWN : SHOWN.filter((p) => p.category === id);
   projTrack.replaceChildren(...list.map(projectCard));
   projTrack.scrollLeft = 0;
   loadImages(projTrack);
@@ -99,9 +101,10 @@ function showCategory(id) {
 }
 
 if (projTrack && window.PROJECTS) {
+  // Projects marked hidden still have a page but stay out of the carousel
   const tabs = [{ id: "all", label: "All" }, ...CATEGORIES];
   tabs.forEach((c) => {
-    const count = c.id === "all" ? PROJECTS.length : PROJECTS.filter((p) => p.category === c.id).length;
+    const count = c.id === "all" ? SHOWN.length : SHOWN.filter((p) => p.category === c.id).length;
     if (!count) return;
     const t = document.createElement("button");
     t.className = "tab";

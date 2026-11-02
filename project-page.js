@@ -21,8 +21,10 @@ if (i === -1) {
 } else {
   const p = PROJECTS[i];
   const cat = CATEGORIES.find((c) => c.id === p.category);
-  const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
-  const next = PROJECTS[(i + 1) % PROJECTS.length];
+  const nav = PROJECTS.filter((q) => !q.hidden || q === p);
+  const j = nav.indexOf(p);
+  const prev = nav[(j - 1 + nav.length) % nav.length];
+  const next = nav[(j + 1) % nav.length];
   const list = (items) => items.map((t) => `<li>${t}</li>`).join("");
 
   document.title = `${p.title} · Khushi Teli`;
