@@ -62,6 +62,12 @@ if (i === -1) {
         <h2>The context</h2>
         <p>${p.context}</p>
       </div>
+      ${p.dashboards ? `<div class="d-block d-video d-dash">
+        <h2>Interactive dashboards</h2>
+        ${p.dashboards.length > 1 ? `<div class="dash-tabs" role="tablist">${p.dashboards.map((d, k) => `<button class="dash-tab" role="tab" data-k="${k}" aria-selected="${k === 0}">${d.title}</button>`).join("")}</div>` : ""}
+        <div class="dash-frame"><iframe title="${p.dashboards[0].title}" loading="lazy" allowfullscreen></iframe></div>
+        <p class="d-cap"><a class="dash-open" href="${p.dashboards[0].url}" target="_blank" rel="noopener">Open full screen on Tableau Public ↗</a></p>
+      </div>` : ""}
       ${p.figure ? `<div class="d-block d-video d-figure">
         <h2>${p.figure.title || "Figure"}</h2>
         <img src="${p.figure.src}" alt="${p.figure.caption || ""}" loading="lazy" />
@@ -94,4 +100,42 @@ if (i === -1) {
     img.addEventListener("load", () => img.parentElement.classList.add("loaded"));
     img.src = img.dataset.src;
   });
+
+  if (p.dashboards) setupDashboards(p.dashboards);
+}
+
+// Tableau Public dashboards are a fixed 1366x795, so on desktop the frame is
+// scaled down to fit the column; phones get Tableau's own phone layout.
+function setupDashboards(list) {
+  const box = main.querySelector(".dash-frame");
+  const frame = box.querySelector("iframe");
+  const open = main.querySelector(".dash-open");
+  const W = 1366, H = 795;
+  let current = 0;
+  const phone = () => box.clientWidth < 600;
+  const src = (d) => `${d.url}?:embed=y&:showVizHome=no&:toolbar=yes&:device=${phone() ? "phone" : "desktop"}`;
+  const fit = () => {
+    if (phone()) {
+      frame.style.cssText = "width:100%;height:1727px;transform:none";
+      box.style.height = "auto";
+    } else {
+      const k = box.clientWidth / W;
+      frame.style.cssText = `width:${W}px;height:${H}px;transform:scale(${k});transform-origin:0 0`;
+      box.style.height = `${H * k}px`;
+    }
+  };
+  const show = (k) => {
+    current = k;
+    frame.src = src(list[k]);
+    frame.title = list[k].title;
+    open.href = list[k].url;
+    main.querySelectorAll(".dash-tab").forEach((t) => t.setAttribute("aria-selected", String(+t.dataset.k === k)));
+    fit();
+  };
+  main.querySelectorAll(".dash-tab").forEach((t) => t.addEventListener("click", () => show(+t.dataset.k)));
+  let wasPhone = phone();
+  window.addEventListener("resize", () => {
+    if (phone() !== wasPhone) { wasPhone = phone(); show(current); } else fit();
+  });
+  show(0);
 }

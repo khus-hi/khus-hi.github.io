@@ -332,6 +332,12 @@ figure { margin: 0; }
 }
 .d-video { grid-column: 1 / -1; }
 .d-video video { display: block; width: 100%; border-radius: 14px; border: 1px solid var(--line); background: #000; }
+.dash-frame { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background: #fff; }
+.dash-frame iframe { display: block; border: 0; }
+.dash-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.dash-tab { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); font: 500 0.88rem var(--sans); cursor: pointer; }
+.dash-tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.d-cap a { color: var(--accent); }
 .d-figure img { display: block; width: 100%; border-radius: 14px; border: 1px solid var(--line); }
 .d-cap { margin-top: 10px; font-size: 0.88rem; color: var(--muted); }
 .cover-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }

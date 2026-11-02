@@ -8,6 +8,7 @@
 //   github    link to the repo. Replace "https://github.com/khus-hi" with the
 //             exact repo URL, e.g. "https://github.com/khus-hi/health-etl"
 //   live      optional extra button (dashboard, demo, etc.)
+//   dashboards  Tableau Public views embedded on the page: [{ title, url }]
 //   hidden    true keeps the project page but leaves it out of the Projects
 //             carousel (used for work linked from Talks & Wins)
 
@@ -65,6 +66,9 @@ window.PROJECTS = [
     ],
     stack: ["Python", "SQL", "dbt", "DuckDB", "Kubeflow", "GitHub Actions", "scikit-learn"],
     github: "https://github.com/khus-hi/us-metro-economic-pulse",
+    dashboards: [
+      { title: "Metro ranking", url: "https://public.tableau.com/views/USMetroEconomicPulseMetroRanking/1Metroranking" },
+    ],
   },
   {
     slug: "gateway-cities-dashboard",
