@@ -75,6 +75,32 @@ window.PROJECTS = [
     ],
   },
   {
+    slug: "hrrp-penalties",
+    category: "analytics",
+    title: "Hospital Readmission Penalties in Dollars",
+    short: "What Medicare's readmission penalties actually cost each hospital and the big for-profit chains, tied to their SEC filings.",
+    cover: "assets/projects/hrrp.jpg",
+    art: "a1",
+    meta: "Healthcare finance · CMS and SEC data",
+    date: "2026",
+    context:
+      "Medicare's Hospital Readmissions Reduction Program cuts payments to hospitals with more readmissions than expected, but CMS publishes the penalty as a payment factor, not in dollars. I turned it into dollars for every hospital and compared the four public for-profit chains (HCA, Tenet, Community Health Systems and UHS) with everyone else.",
+    did: [
+      "Joined CMS readmission, cost report and ownership data with Census ACS and SEC EDGAR financials in DuckDB, with SQL checks on the joins",
+      "Reproduced CMS's FY2026 payment factor for all 2,945 hospitals with zero mismatches",
+      "Estimated penalty dollars per hospital and condition from cost report base payments",
+      "Modeled what explains readmission ratios with robust OLS and a gradient-boosted tree",
+      "Built a formula-driven Excel model with scenarios and the ROI of a care-transitions program",
+    ],
+    results: [
+      "About $316M in estimated FY2026 penalties across 2,302 penalized hospitals",
+      "HCA pays 0.57% of base Medicare payments in penalties, vs 0.37% for hospitals outside the four chains",
+      "Hospital and community factors explain only about 7% of the variation in readmission ratios",
+    ],
+    stack: ["Python", "SQL", "DuckDB", "statsmodels", "scikit-learn", "Excel"],
+    github: "https://github.com/khus-hi/hrrp-penalties",
+  },
+  {
     slug: "gateway-cities-dashboard",
     category: "analytics",
     hidden: true,
@@ -243,6 +269,7 @@ window.PROJECTS = [
   {
     slug: "ecommerce-customer-analytics",
     category: "analytics",
+    hidden: true,
     title: "E-commerce Revenue & Churn Analytics",
     short: "RFM segmentation, lifetime value and churn prediction to find high-value and at-risk customers.",
     cover: "assets/projects/ecommerce.jpg",
