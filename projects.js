@@ -138,6 +138,7 @@ window.PROJECTS = [
   {
     slug: "slot-machine-revenue-explorer",
     category: "data-engineering",
+    hidden: true,
     title: "US Military Base Slot Machine Revenue Explorer",
     short: "Turned unstructured Army PDFs covering 79 overseas bases into a clean SQLite database and revenue analysis.",
     cover: "assets/projects/slot-machine.jpg",
