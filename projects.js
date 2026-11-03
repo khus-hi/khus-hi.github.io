@@ -118,7 +118,7 @@ window.PROJECTS = [
     meta: "Operations analytics · Bluebikes, Citi Bike and Divvy",
     date: "2026",
     context:
-      "Docked bike-share fails riders when a station has no bikes or no open docks, and those lost trips never show up in trip data. Boston is also deciding where new Bluebikes stations should go. I wrote a requirements doc with the City of Boston Analytics Team as the audience, then measured stockouts, tested whether new stations add rides, and ranked where new ones should go, using Citi Bike and Divvy as benchmarks.",
+      "Docked bike-share fails riders when a station has no bikes or no open docks, and those lost trips never show up in trip data. Boston is also deciding where new Bluebikes stations should go. I wrote a requirements doc with the City of Boston Analytics Team as the audience, tested whether new stations add rides, forecast station demand and ranked where new ones should go, using Citi Bike and Divvy as benchmarks. A collector polling every station every 5 minutes is measuring how often stations sit empty or full, with stockout results due after it finishes in late November.",
     did: [
       "Wrote the requirements doc: business questions, KPI definitions and scope",
       "Built a GBFS collector that snapshots station status, scheduled as a Kubeflow pipeline, plus ingestion of official trip history",
@@ -129,10 +129,10 @@ window.PROJECTS = [
     results: [
       "New stations mostly add rides: about +160 departures a week per opening, net of nearby losses",
       "Cannibalization only shows up within 250 m (-7.3%), which sets a spacing rule for siting",
-      "Boston demand forecast cuts departure MAPE from 85% to 57% vs the seasonal-naive baseline",
+      "Boston forecast error (WAPE) of 64.7% vs 85.2% for the same-hour-last-week baseline, with similar gains in New York and Chicago",
       "35 dense Boston tracts with no station within 400 m, ranked for new stations",
     ],
-    stack: ["Python", "SQL", "DuckDB", "Kubeflow", "statsmodels", "LightGBM", "GeoPandas", "Excel"],
+    stack: ["Python", "SQL", "DuckDB", "Kubeflow", "statsmodels", "LightGBM", "GeoPandas", "matplotlib", "Excel"],
     github: "https://github.com/khus-hi/bikeshare-stockouts-siting",
   },
   {
