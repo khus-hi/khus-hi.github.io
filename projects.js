@@ -109,6 +109,33 @@ window.PROJECTS = [
     ],
   },
   {
+    slug: "bikeshare-stockouts-siting",
+    category: "analytics",
+    title: "Bike-Share Stockouts and Station Siting",
+    short: "Where Bluebikes stations run empty or full, whether new stations add rides, and where Boston should put the next ones.",
+    cover: "assets/projects/bikeshare.jpg",
+    art: "a5",
+    meta: "Operations analytics · Bluebikes, Citi Bike and Divvy",
+    date: "2026",
+    context:
+      "Docked bike-share fails riders when a station has no bikes or no open docks, and those lost trips never show up in trip data. Boston is also deciding where new Bluebikes stations should go. I wrote a requirements doc with the City of Boston Analytics Team as the audience, then measured stockouts, tested whether new stations add rides, and ranked where new ones should go, using Citi Bike and Divvy as benchmarks.",
+    did: [
+      "Wrote the requirements doc: business questions, KPI definitions and scope",
+      "Built a GBFS collector that snapshots station status, scheduled as a Kubeflow pipeline, plus ingestion of official trip history",
+      "Ran a stacked difference-in-differences study on 165 station openings across three cities",
+      "Forecast hourly station demand with LightGBM against a same-hour-last-week baseline",
+      "Ranked Boston Census tracts for new stations using ACS density, car-free households and distance to the nearest station",
+    ],
+    results: [
+      "New stations mostly add rides: about +160 departures a week per opening, net of nearby losses",
+      "Cannibalization only shows up within 250 m (-7.3%), which sets a spacing rule for siting",
+      "Boston demand forecast cuts departure MAPE from 85% to 57% vs the seasonal-naive baseline",
+      "35 dense Boston tracts with no station within 400 m, ranked for new stations",
+    ],
+    stack: ["Python", "SQL", "DuckDB", "Kubeflow", "statsmodels", "LightGBM", "GeoPandas", "Excel"],
+    github: "https://github.com/khus-hi/bikeshare-stockouts-siting",
+  },
+  {
     slug: "gateway-cities-dashboard",
     category: "analytics",
     hidden: true,
