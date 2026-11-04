@@ -246,6 +246,7 @@ window.PROJECTS = [
   {
     slug: "medai-ati-prediction",
     category: "machine-learning",
+    hidden: true,
     title: "Acute Tubular Injury Prediction (MedAI Hackathon)",
     short: "Winning hackathon model that predicts kidney injury risk before biopsy from 6,500+ protein biomarkers.",
     cover: "assets/projects/medai.jpg",
@@ -383,6 +384,7 @@ window.PROJECTS = [
   {
     slug: "moodsense",
     category: "machine-learning",
+    hidden: true,
     title: "MoodSense: Multimodal Emotion Recognition",
     short: "Comparing audio, video and fused emotion models on RAVDESS, with error and confidence analysis.",
     cover: "assets/projects/moodsense.jpg",
