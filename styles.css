@@ -348,10 +348,5 @@ figure { margin: 0; }
 .cover-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 .cover .chip { z-index: 2; }
 
-/* Featured projects ("Start here") + headline result on cards */
-.feat-label { font: 700 0.8rem var(--sans, inherit); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
-.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 56px; }
-.feat-grid .pcard { flex: none; }
+/* Headline result on project cards */
 .p-hook { margin: 10px 0 12px; color: var(--ink) !important; font-weight: 700; font-size: 0.98rem !important; padding-left: 12px; border-left: 3px solid var(--accent); }
-@media (max-width: 900px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px) { .feat-grid { grid-template-columns: 1fr; } }
