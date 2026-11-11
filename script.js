@@ -94,7 +94,10 @@ const SHOWN = (window.PROJECTS || []).filter((p) => !p.hidden);
 
 function showCategory(id) {
   projTabs.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.cat === id)));
-  const list = id === "all" ? SHOWN : SHOWN.filter((p) => p.category === id);
+  // "All" lists the Start here projects last, so its first cards aren't repeats
+  const feat = window.FEATURED || [];
+  const all = [...SHOWN.filter((p) => !feat.includes(p.slug)), ...SHOWN.filter((p) => feat.includes(p.slug))];
+  const list = id === "all" ? all : SHOWN.filter((p) => p.category === id);
   projTrack.replaceChildren(...list.map(projectCard));
   projTrack.scrollLeft = 0;
   loadImages(projTrack);
