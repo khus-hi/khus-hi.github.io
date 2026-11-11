@@ -48,6 +48,7 @@ if (i === -1) {
             ${p.slidesLabel || "View presentation"}
           </a>` : ""}
           ${p.dashboards ? `<a class="btn" href="#dashboards"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Dashboards</a>` : ""}
+          ${p.app ? `<a class="btn" href="#app">Live app</a>` : ""}
           ${p.live ? `<a class="btn${p.github || p.slides ? "" : " primary"}" href="${p.live.url}" target="_blank" rel="noopener">${p.live.label} ↗</a>` : ""}
         </div>
       </div>
@@ -68,6 +69,11 @@ if (i === -1) {
         ${p.dashboards.length > 1 ? `<div class="dash-tabs" role="tablist">${p.dashboards.map((d, k) => `<button class="dash-tab" role="tab" data-k="${k}" aria-selected="${k === 0}">${d.title}</button>`).join("")}</div>` : ""}
         <div class="dash-frame"><iframe title="${p.dashboards[0].title}" loading="lazy" allowfullscreen></iframe></div>
         <p class="d-cap"><a class="dash-open" href="${p.dashboards[0].url}" target="_blank" rel="noopener">Open full screen on Tableau Public ↗</a></p>
+      </div>` : ""}
+      ${p.app ? `<div class="d-block d-video d-app" id="app">
+        <h2>Live app</h2>
+        <div class="app-frame"><iframe title="${p.title} app" src="${p.app}${p.app.includes("?") ? "&" : "?"}embed=true" loading="lazy" allowfullscreen></iframe></div>
+        <p class="d-cap"><a href="${p.app}" target="_blank" rel="noopener">Open the app in a new tab ↗</a> · it may take a few seconds to wake up</p>
       </div>` : ""}
       ${p.figure ? `<div class="d-block d-video d-figure">
         <h2>${p.figure.title || "Figure"}</h2>

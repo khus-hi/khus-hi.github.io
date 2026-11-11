@@ -8,6 +8,8 @@
 //   github    link to the repo. Replace "https://github.com/khus-hi" with the
 //             exact repo URL, e.g. "https://github.com/khus-hi/health-etl"
 //   live      optional extra button (dashboard, demo, etc.)
+//   app       URL of a hosted Streamlit app: embedded on the page with an
+//             "Open the app" button
 //   dashboards  Tableau Public views embedded on the page:
 //             [{ title, url, w, h (desktop size), ph (phone height) }]
 //   hidden    true keeps the project page but leaves it out of the Projects
@@ -41,6 +43,34 @@ window.PROJECTS = [
     stack: ["Kubeflow", "OpenShift AI", "Speech recognition", "LLMs", "TTS", "Python"],
     github: "",
     slides: "assets/docs/devconf-presentation.pdf",
+  },
+  {
+    slug: "sec-filings-extraction",
+    category: "ai-llms",
+    title: "SEC 10-K Extraction with a Local LLM",
+    short: "A pipeline that reads 150 SEC annual reports with an open-source LLM, validates every answer, and measures accuracy against a hand-checked gold set.",
+    cover: "assets/projects/sec-filings.jpg",
+    art: "a3",
+    meta: "Personal project · LLM extraction",
+    date: "2026",
+    context:
+      "Annual reports (10-Ks) hold revenue, profit, headcount and a company's own list of risks, but as long unstructured documents. I built a pipeline that pulls them from SEC EDGAR, has a local open-source model read the right sections, and only keeps answers that pass validation. Then I measured how often it is actually right.",
+    did: [
+      "Ingested 150 10-K filings for 50 companies from the SEC EDGAR API into an S3 raw zone, with accession-number and SHA-256 checks so re-runs download and re-process nothing",
+      "Wrote my own inline-XBRL-aware HTML parser that finds Items 1A, 7 and 8 and chunks them, with a title fallback that cut short Item 8 sections from 39 to 0",
+      "Extracted revenue, net income, employee count and categorized risk factors with qwen3:8b on Ollama, constrained to JSON schemas and checked with Pydantic",
+      "Sent invalid answers back to the model with the validation errors, then quarantined failures with the reason instead of guessing",
+      "Evaluated against a 32-filing hand-checked gold set and each filing's own XBRL tags, with precision, recall and F1 where a missing answer counts as a miss",
+      "Modeled the results in dbt on DuckDB, orchestrated every stage in Airflow, and built a Streamlit app that shows extraction quality next to the results",
+    ],
+    results: [
+      "Revenue F1 0.92, employee count F1 0.94, risk category accuracy 0.84 on the gold set",
+      "Net income was the weak field (F1 0.73): the model often picked the consolidated line, so I report it instead of hiding it",
+      "About 12 s per LLM task on a laptop, 5 tasks quarantined with their reasons, $0 model cost",
+      "dbt build of 53 nodes with 0 failures; incremental weekly Airflow run in 2 min 19 s; 170+ offline pytest tests in CI",
+    ],
+    stack: ["Python", "Ollama", "LLMs", "Pydantic", "SQL", "dbt", "DuckDB", "Airflow", "AWS S3", "Streamlit", "GitHub Actions"],
+    github: "https://github.com/khus-hi/sec-fillings-pipeline",
   },
   {
     slug: "us-metro-economic-pulse",
