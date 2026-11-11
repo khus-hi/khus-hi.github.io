@@ -23,7 +23,7 @@ window.CATEGORIES = [
   { id: "ai-llms", label: "AI & LLMs" },
 ];
 
-// Shown as the "Start here" grid at the top of Projects, in this order
+// Shown first in the Projects carousel, in this order
 window.FEATURED = ["ai-documentary-pipeline", "sec-filings-extraction", "job-market-data-pipeline"];
 
 window.PROJECTS = [

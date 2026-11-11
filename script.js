@@ -94,22 +94,14 @@ const SHOWN = (window.PROJECTS || []).filter((p) => !p.hidden);
 
 function showCategory(id) {
   projTabs.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.cat === id)));
-  // "All" lists the Start here projects last, so its first cards aren't repeats
+  // "All" opens on the strongest projects (window.FEATURED in projects.js)
   const feat = window.FEATURED || [];
-  const all = [...SHOWN.filter((p) => !feat.includes(p.slug)), ...SHOWN.filter((p) => feat.includes(p.slug))];
+  const all = [...feat.map((slug) => SHOWN.find((p) => p.slug === slug)).filter(Boolean), ...SHOWN.filter((p) => !feat.includes(p.slug))];
   const list = id === "all" ? all : SHOWN.filter((p) => p.category === id);
   projTrack.replaceChildren(...list.map(projectCard));
   projTrack.scrollLeft = 0;
   loadImages(projTrack);
   projTrack.dispatchEvent(new Event("carousel:refresh"));
-}
-
-// "Start here": a static grid of the strongest projects (window.FEATURED)
-const featBox = document.getElementById("proj-featured");
-if (featBox && window.FEATURED) {
-  const feat = FEATURED.map((slug) => SHOWN.find((p) => p.slug === slug)).filter(Boolean);
-  featBox.replaceChildren(...feat.map(projectCard));
-  loadImages(featBox);
 }
 
 if (projTrack && window.PROJECTS) {
