@@ -83,6 +83,7 @@ function projectCard(p) {
     <div class="p-body">
       <p class="p-meta">${p.meta}</p>
       <h3>${p.title}</h3>
+      ${p.hook ? `<p class="p-hook">${p.hook}</p>` : ""}
       <p>${p.short}</p>
       <span class="arrow">View project →</span>
     </div>`;
@@ -98,6 +99,14 @@ function showCategory(id) {
   projTrack.scrollLeft = 0;
   loadImages(projTrack);
   projTrack.dispatchEvent(new Event("carousel:refresh"));
+}
+
+// "Start here": a static grid of the strongest projects (window.FEATURED)
+const featBox = document.getElementById("proj-featured");
+if (featBox && window.FEATURED) {
+  const feat = FEATURED.map((slug) => SHOWN.find((p) => p.slug === slug)).filter(Boolean);
+  featBox.replaceChildren(...feat.map(projectCard));
+  loadImages(featBox);
 }
 
 if (projTrack && window.PROJECTS) {
