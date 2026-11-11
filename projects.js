@@ -12,6 +12,7 @@
 //             "Open the app" button
 //   dashboards  Tableau Public views embedded on the page:
 //             [{ title, url, w, h (desktop size), ph (phone height) }]
+//   hook      one headline result shown on the home page card
 //   hidden    true keeps the project page but leaves it out of the Projects
 //             carousel (used for work linked from Talks & Wins)
 
@@ -22,9 +23,13 @@ window.CATEGORIES = [
   { id: "ai-llms", label: "AI & LLMs" },
 ];
 
+// Shown as the "Start here" grid at the top of Projects, in this order
+window.FEATURED = ["ai-documentary-pipeline", "sec-filings-extraction", "job-market-data-pipeline"];
+
 window.PROJECTS = [
   {
     slug: "ai-documentary-pipeline",
+    hook: "85% less production time, 10+ hours saved per interview",
     category: "ai-llms",
     title: "AI Documentary Pipeline",
     short: "An 11-stage Kubeflow pipeline on OpenShift AI that turns raw interviews into narrated mini-documentaries.",
@@ -46,6 +51,7 @@ window.PROJECTS = [
   },
   {
     slug: "sec-filings-extraction",
+    hook: "Revenue F1 0.92 against a hand-checked gold set",
     category: "ai-llms",
     title: "SEC 10-K Extraction with a Local LLM",
     short: "A pipeline that reads 150 SEC annual reports with an open-source LLM, validates every answer, and measures accuracy against a hand-checked gold set.",
@@ -74,6 +80,7 @@ window.PROJECTS = [
   },
   {
     slug: "us-metro-economic-pulse",
+    hook: "All 50 largest metros ranked monthly, fully automated",
     category: "analytics",
     title: "US Metro Economic Pulse",
     short: "A monthly scorecard of the 50 largest US metros, built on an automated pipeline over public BLS, BEA and Census data.",
@@ -106,6 +113,7 @@ window.PROJECTS = [
   },
   {
     slug: "hrrp-penalties",
+    hook: "~$316M in penalties traced across 2,302 hospitals",
     category: "analytics",
     title: "Hospital Readmission Penalties in Dollars",
     short: "What Medicare's readmission penalties actually cost each hospital and the big for-profit chains, tied to their SEC filings.",
@@ -142,6 +150,7 @@ window.PROJECTS = [
   },
   {
     slug: "bikeshare-stockouts-siting",
+    hook: "+160 rides a week per new station; 35 sites ranked",
     category: "analytics",
     title: "Bike-Share Stockouts and Station Siting",
     short: "Where Bluebikes stations run empty or full, whether new stations add rides, and where Boston should put the next ones.",
@@ -198,6 +207,7 @@ window.PROJECTS = [
   },
   {
     slug: "experimentation-at-scale",
+    hook: "Only 7.3% of 5,917 A/B test winners hold up",
     category: "machine-learning",
     title: "Experimentation at Scale",
     short: "When you run thousands of A/B tests, how many winners are real? Answered on 32,487 real headline experiments.",
@@ -227,6 +237,7 @@ window.PROJECTS = [
   },
   {
     slug: "hrrp-penalty-effect",
+    hook: "Null effect with a tight CI: +0.03% (−0.26% to +0.36%)",
     category: "machine-learning",
     title: "Does Medicare's Readmission Penalty Work?",
     short: "A regression discontinuity at CMS's penalty line, testing whether being penalized lowers a hospital's readmissions.",
@@ -254,6 +265,7 @@ window.PROJECTS = [
   },
   {
     slug: "aki-risk-prediction",
+    hook: "Recall 0.37 → 0.77, ROC-AUC 0.85",
     category: "machine-learning",
     title: "Drug-Associated Kidney Injury Risk in the ICU",
     short: "Predicting acute kidney injury within 48 hours of nephrotoxic drugs from a 65K+ ICU-stay cohort.",
@@ -295,6 +307,7 @@ window.PROJECTS = [
   },
   {
     slug: "job-market-data-pipeline",
+    hook: "553 postings a day, end to end in 31.5 seconds",
     category: "data-engineering",
     title: "Job Market Data Pipeline",
     short: "A daily Airflow pipeline that lands US data and analytics job postings in S3, models them in dbt on DuckDB, and tracks skill demand, salaries and hiring.",
@@ -350,6 +363,7 @@ window.PROJECTS = [
   },
   {
     slug: "health-events-etl",
+    hook: "1M events landed, every row validated, safe reruns",
     category: "data-engineering",
     title: "Health Events ETL Pipeline",
     short: "Idempotent pipeline that lands 1M health events in PostgreSQL with row-level quality checks, then serves them through an API.",
@@ -394,6 +408,7 @@ window.PROJECTS = [
   },
   {
     slug: "nyc-subway-forecasting",
+    hook: "~40% lower MAE than the naive baseline",
     category: "machine-learning",
     title: "NYC Subway Demand Forecasting",
     short: "Hourly ridership forecasts for two of NYC's busiest stations, turned into staffing decisions.",
